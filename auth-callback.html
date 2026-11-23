@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sakin — Yönlendiriliyor</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #2a2132;
+      color: #f4ebdc;
+    }
+    .card {
+      text-align: center;
+      padding: 32px;
+      max-width: 400px;
+    }
+    h1 { font-size: 24px; margin-bottom: 12px; }
+    p { font-size: 14px; opacity: 0.8; margin-bottom: 24px; }
+    a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #c4704f;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .fallback { margin-top: 16px; font-size: 12px; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Sakin</h1>
+    <p>E-posta doğrulandı. Uygulamayı açmak için aşağıdaki butona tıkla.</p>
+    <a id="openApp" href="#">Uygulamayı aç</a>
+    <p class="fallback">Buton çalışmazsa uygulamayı manuel aç ve giriş yap.</p>
+  </div>
+  <script>
+    (function() {
+      var hash = window.location.hash;
+      var btn = document.getElementById('openApp');
+      btn.href = 'sakin://auth/callback' + hash;
+      // Otomatik deneme (bazı tarayıcılarda çalışır)
+      setTimeout(function() {
+        window.location.href = 'sakin://auth/callback' + hash;
+      }, 500);
+    })();
+  </script>
+</body>
+</html>
